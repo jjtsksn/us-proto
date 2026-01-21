@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package jjtsksn.user.v1;
+
+option go_package = "github.com/jjtsksn/us-proto/go/user/v1;user_v1";
+
+import "google/protobuf/timestamp.proto";
+import "easyp_vendor/buf/validate/validate.proto";
+
+service UserService {
+  rpc UpsertTelegramUser(UpsertTelegramUserRequest)
+      returns (User);
+
+  rpc GetUserByTelegramID(GetUserByTelegramIDRequest)
+      returns (User);
+
+  rpc GetUserByID(GetUserByIDRequest)
+      returns (User);
+}
+
+message UpsertTelegramUserRequest {
+  TelegramUser telegram = 1 [(buf.validate.field).required = true];
+}
+
+message GetUserByTelegramIDRequest {
+  int64 telegram_user_id = 1 [(buf.validate.field).int64.gte = 1];
+}
+
+message GetUserByIDRequest {
+  string user_id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message User {
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  TelegramUser telegram = 2;
+  google.protobuf.Timestamp created_at = 3;
+}
+
+message TelegramUser {
+  int64 telegram_user_id = 1 [(buf.validate.field).int64.gte = 1];
+}
