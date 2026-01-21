@@ -20,18 +20,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_UpsertTelegramUser_FullMethodName  = "/jjtsksn.user.v1.UserService/UpsertTelegramUser"
-	UserService_GetUserByTelegramID_FullMethodName = "/jjtsksn.user.v1.UserService/GetUserByTelegramID"
-	UserService_GetUserByID_FullMethodName         = "/jjtsksn.user.v1.UserService/GetUserByID"
+	UserService_RegisterTelegramUser_FullMethodName    = "/jjtsksn.user.v1.UserService/RegisterTelegramUser"
+	UserService_GetUserByTelegramUserID_FullMethodName = "/jjtsksn.user.v1.UserService/GetUserByTelegramUserID"
 )
 
 // UserServiceClient is the client API for UserService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
-	UpsertTelegramUser(ctx context.Context, in *UpsertTelegramUserRequest, opts ...grpc.CallOption) (*User, error)
-	GetUserByTelegramID(ctx context.Context, in *GetUserByTelegramIDRequest, opts ...grpc.CallOption) (*User, error)
-	GetUserByID(ctx context.Context, in *GetUserByIDRequest, opts ...grpc.CallOption) (*User, error)
+	RegisterTelegramUser(ctx context.Context, in *RegisterTelegramUserRequest, opts ...grpc.CallOption) (*RegisterTelegramUserResponse, error)
+	GetUserByTelegramUserID(ctx context.Context, in *GetUserByTelegramUserIDRequest, opts ...grpc.CallOption) (*GetUserByTelegramUserIDResponse, error)
 }
 
 type userServiceClient struct {
@@ -42,30 +40,20 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 	return &userServiceClient{cc}
 }
 
-func (c *userServiceClient) UpsertTelegramUser(ctx context.Context, in *UpsertTelegramUserRequest, opts ...grpc.CallOption) (*User, error) {
+func (c *userServiceClient) RegisterTelegramUser(ctx context.Context, in *RegisterTelegramUserRequest, opts ...grpc.CallOption) (*RegisterTelegramUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(User)
-	err := c.cc.Invoke(ctx, UserService_UpsertTelegramUser_FullMethodName, in, out, cOpts...)
+	out := new(RegisterTelegramUserResponse)
+	err := c.cc.Invoke(ctx, UserService_RegisterTelegramUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) GetUserByTelegramID(ctx context.Context, in *GetUserByTelegramIDRequest, opts ...grpc.CallOption) (*User, error) {
+func (c *userServiceClient) GetUserByTelegramUserID(ctx context.Context, in *GetUserByTelegramUserIDRequest, opts ...grpc.CallOption) (*GetUserByTelegramUserIDResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(User)
-	err := c.cc.Invoke(ctx, UserService_GetUserByTelegramID_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userServiceClient) GetUserByID(ctx context.Context, in *GetUserByIDRequest, opts ...grpc.CallOption) (*User, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(User)
-	err := c.cc.Invoke(ctx, UserService_GetUserByID_FullMethodName, in, out, cOpts...)
+	out := new(GetUserByTelegramUserIDResponse)
+	err := c.cc.Invoke(ctx, UserService_GetUserByTelegramUserID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,9 +64,8 @@ func (c *userServiceClient) GetUserByID(ctx context.Context, in *GetUserByIDRequ
 // All implementations should embed UnimplementedUserServiceServer
 // for forward compatibility.
 type UserServiceServer interface {
-	UpsertTelegramUser(context.Context, *UpsertTelegramUserRequest) (*User, error)
-	GetUserByTelegramID(context.Context, *GetUserByTelegramIDRequest) (*User, error)
-	GetUserByID(context.Context, *GetUserByIDRequest) (*User, error)
+	RegisterTelegramUser(context.Context, *RegisterTelegramUserRequest) (*RegisterTelegramUserResponse, error)
+	GetUserByTelegramUserID(context.Context, *GetUserByTelegramUserIDRequest) (*GetUserByTelegramUserIDResponse, error)
 }
 
 // UnimplementedUserServiceServer should be embedded to have
@@ -88,14 +75,11 @@ type UserServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUserServiceServer struct{}
 
-func (UnimplementedUserServiceServer) UpsertTelegramUser(context.Context, *UpsertTelegramUserRequest) (*User, error) {
-	return nil, status.Error(codes.Unimplemented, "method UpsertTelegramUser not implemented")
+func (UnimplementedUserServiceServer) RegisterTelegramUser(context.Context, *RegisterTelegramUserRequest) (*RegisterTelegramUserResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method RegisterTelegramUser not implemented")
 }
-func (UnimplementedUserServiceServer) GetUserByTelegramID(context.Context, *GetUserByTelegramIDRequest) (*User, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetUserByTelegramID not implemented")
-}
-func (UnimplementedUserServiceServer) GetUserByID(context.Context, *GetUserByIDRequest) (*User, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetUserByID not implemented")
+func (UnimplementedUserServiceServer) GetUserByTelegramUserID(context.Context, *GetUserByTelegramUserIDRequest) (*GetUserByTelegramUserIDResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserByTelegramUserID not implemented")
 }
 func (UnimplementedUserServiceServer) testEmbeddedByValue() {}
 
@@ -117,56 +101,38 @@ func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
 	s.RegisterService(&UserService_ServiceDesc, srv)
 }
 
-func _UserService_UpsertTelegramUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpsertTelegramUserRequest)
+func _UserService_RegisterTelegramUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterTelegramUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).UpsertTelegramUser(ctx, in)
+		return srv.(UserServiceServer).RegisterTelegramUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_UpsertTelegramUser_FullMethodName,
+		FullMethod: UserService_RegisterTelegramUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).UpsertTelegramUser(ctx, req.(*UpsertTelegramUserRequest))
+		return srv.(UserServiceServer).RegisterTelegramUser(ctx, req.(*RegisterTelegramUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_GetUserByTelegramID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserByTelegramIDRequest)
+func _UserService_GetUserByTelegramUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserByTelegramUserIDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).GetUserByTelegramID(ctx, in)
+		return srv.(UserServiceServer).GetUserByTelegramUserID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_GetUserByTelegramID_FullMethodName,
+		FullMethod: UserService_GetUserByTelegramUserID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetUserByTelegramID(ctx, req.(*GetUserByTelegramIDRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserService_GetUserByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserByIDRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).GetUserByID(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_GetUserByID_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetUserByID(ctx, req.(*GetUserByIDRequest))
+		return srv.(UserServiceServer).GetUserByTelegramUserID(ctx, req.(*GetUserByTelegramUserIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -179,16 +145,12 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "UpsertTelegramUser",
-			Handler:    _UserService_UpsertTelegramUser_Handler,
+			MethodName: "RegisterTelegramUser",
+			Handler:    _UserService_RegisterTelegramUser_Handler,
 		},
 		{
-			MethodName: "GetUserByTelegramID",
-			Handler:    _UserService_GetUserByTelegramID_Handler,
-		},
-		{
-			MethodName: "GetUserByID",
-			Handler:    _UserService_GetUserByID_Handler,
+			MethodName: "GetUserByTelegramUserID",
+			Handler:    _UserService_GetUserByTelegramUserID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

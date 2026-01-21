@@ -24,208 +24,17 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type UpsertTelegramUserRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Telegram      *TelegramUser          `protobuf:"bytes,1,opt,name=telegram,proto3" json:"telegram,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpsertTelegramUserRequest) Reset() {
-	*x = UpsertTelegramUserRequest{}
-	mi := &file_proto_user_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpsertTelegramUserRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpsertTelegramUserRequest) ProtoMessage() {}
-
-func (x *UpsertTelegramUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_user_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpsertTelegramUserRequest.ProtoReflect.Descriptor instead.
-func (*UpsertTelegramUserRequest) Descriptor() ([]byte, []int) {
-	return file_proto_user_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *UpsertTelegramUserRequest) GetTelegram() *TelegramUser {
-	if x != nil {
-		return x.Telegram
-	}
-	return nil
-}
-
-type GetUserByTelegramIDRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	TelegramUserId int64                  `protobuf:"varint,1,opt,name=telegram_user_id,json=telegramUserId,proto3" json:"telegram_user_id,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *GetUserByTelegramIDRequest) Reset() {
-	*x = GetUserByTelegramIDRequest{}
-	mi := &file_proto_user_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserByTelegramIDRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserByTelegramIDRequest) ProtoMessage() {}
-
-func (x *GetUserByTelegramIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_user_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserByTelegramIDRequest.ProtoReflect.Descriptor instead.
-func (*GetUserByTelegramIDRequest) Descriptor() ([]byte, []int) {
-	return file_proto_user_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *GetUserByTelegramIDRequest) GetTelegramUserId() int64 {
-	if x != nil {
-		return x.TelegramUserId
-	}
-	return 0
-}
-
-type GetUserByIDRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserByIDRequest) Reset() {
-	*x = GetUserByIDRequest{}
-	mi := &file_proto_user_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserByIDRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserByIDRequest) ProtoMessage() {}
-
-func (x *GetUserByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_user_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserByIDRequest.ProtoReflect.Descriptor instead.
-func (*GetUserByIDRequest) Descriptor() ([]byte, []int) {
-	return file_proto_user_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetUserByIDRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-type User struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Telegram      *TelegramUser          `protobuf:"bytes,2,opt,name=telegram,proto3" json:"telegram,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *User) Reset() {
-	*x = User{}
-	mi := &file_proto_user_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *User) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*User) ProtoMessage() {}
-
-func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_user_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use User.ProtoReflect.Descriptor instead.
-func (*User) Descriptor() ([]byte, []int) {
-	return file_proto_user_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *User) GetUuid() string {
-	if x != nil {
-		return x.Uuid
-	}
-	return ""
-}
-
-func (x *User) GetTelegram() *TelegramUser {
-	if x != nil {
-		return x.Telegram
-	}
-	return nil
-}
-
-func (x *User) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
-}
-
 type TelegramUser struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	TelegramUserId int64                  `protobuf:"varint,1,opt,name=telegram_user_id,json=telegramUserId,proto3" json:"telegram_user_id,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Username      *string                `protobuf:"bytes,2,opt,name=username,proto3,oneof" json:"username,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *TelegramUser) Reset() {
 	*x = TelegramUser{}
-	mi := &file_proto_user_proto_msgTypes[4]
+	mi := &file_proto_user_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -237,7 +46,7 @@ func (x *TelegramUser) String() string {
 func (*TelegramUser) ProtoMessage() {}
 
 func (x *TelegramUser) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_user_proto_msgTypes[4]
+	mi := &file_proto_user_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -250,38 +59,285 @@ func (x *TelegramUser) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TelegramUser.ProtoReflect.Descriptor instead.
 func (*TelegramUser) Descriptor() ([]byte, []int) {
+	return file_proto_user_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *TelegramUser) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *TelegramUser) GetUsername() string {
+	if x != nil && x.Username != nil {
+		return *x.Username
+	}
+	return ""
+}
+
+type User struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	TelegramUser  *TelegramUser          `protobuf:"bytes,3,opt,name=telegram_user,json=telegramUser,proto3,oneof" json:"telegram_user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *User) Reset() {
+	*x = User{}
+	mi := &file_proto_user_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *User) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*User) ProtoMessage() {}
+
+func (x *User) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_user_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use User.ProtoReflect.Descriptor instead.
+func (*User) Descriptor() ([]byte, []int) {
+	return file_proto_user_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *User) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+func (x *User) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *User) GetTelegramUser() *TelegramUser {
+	if x != nil {
+		return x.TelegramUser
+	}
+	return nil
+}
+
+type RegisterTelegramUserRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TelegramUser  *TelegramUser          `protobuf:"bytes,1,opt,name=telegram_user,json=telegramUser,proto3" json:"telegram_user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RegisterTelegramUserRequest) Reset() {
+	*x = RegisterTelegramUserRequest{}
+	mi := &file_proto_user_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegisterTelegramUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterTelegramUserRequest) ProtoMessage() {}
+
+func (x *RegisterTelegramUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_user_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterTelegramUserRequest.ProtoReflect.Descriptor instead.
+func (*RegisterTelegramUserRequest) Descriptor() ([]byte, []int) {
+	return file_proto_user_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *RegisterTelegramUserRequest) GetTelegramUser() *TelegramUser {
+	if x != nil {
+		return x.TelegramUser
+	}
+	return nil
+}
+
+type RegisterTelegramUserResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RegisterTelegramUserResponse) Reset() {
+	*x = RegisterTelegramUserResponse{}
+	mi := &file_proto_user_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegisterTelegramUserResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterTelegramUserResponse) ProtoMessage() {}
+
+func (x *RegisterTelegramUserResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_user_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterTelegramUserResponse.ProtoReflect.Descriptor instead.
+func (*RegisterTelegramUserResponse) Descriptor() ([]byte, []int) {
+	return file_proto_user_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *RegisterTelegramUserResponse) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+type GetUserByTelegramUserIDRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	TelegramUserId int64                  `protobuf:"varint,1,opt,name=telegram_user_id,json=telegramUserId,proto3" json:"telegram_user_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *GetUserByTelegramUserIDRequest) Reset() {
+	*x = GetUserByTelegramUserIDRequest{}
+	mi := &file_proto_user_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserByTelegramUserIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserByTelegramUserIDRequest) ProtoMessage() {}
+
+func (x *GetUserByTelegramUserIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_user_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserByTelegramUserIDRequest.ProtoReflect.Descriptor instead.
+func (*GetUserByTelegramUserIDRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *TelegramUser) GetTelegramUserId() int64 {
+func (x *GetUserByTelegramUserIDRequest) GetTelegramUserId() int64 {
 	if x != nil {
 		return x.TelegramUserId
 	}
 	return 0
 }
 
+type GetUserByTelegramUserIDResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserByTelegramUserIDResponse) Reset() {
+	*x = GetUserByTelegramUserIDResponse{}
+	mi := &file_proto_user_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserByTelegramUserIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserByTelegramUserIDResponse) ProtoMessage() {}
+
+func (x *GetUserByTelegramUserIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_user_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserByTelegramUserIDResponse.ProtoReflect.Descriptor instead.
+func (*GetUserByTelegramUserIDResponse) Descriptor() ([]byte, []int) {
+	return file_proto_user_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetUserByTelegramUserIDResponse) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
 var File_proto_user_proto protoreflect.FileDescriptor
 
 const file_proto_user_proto_rawDesc = "" +
 	"\n" +
-	"\x10proto/user.proto\x12\x0fjjtsksn.user.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a(easyp_vendor/buf/validate/validate.proto\"^\n" +
-	"\x19UpsertTelegramUserRequest\x12A\n" +
-	"\btelegram\x18\x01 \x01(\v2\x1d.jjtsksn.user.v1.TelegramUserB\x06\xbaH\x03\xc8\x01\x01R\btelegram\"O\n" +
-	"\x1aGetUserByTelegramIDRequest\x121\n" +
-	"\x10telegram_user_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02(\x01R\x0etelegramUserId\"7\n" +
-	"\x12GetUserByIDRequest\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\"\x9a\x01\n" +
+	"\x10proto/user.proto\x12\x0fjjtsksn.user.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a(easyp_vendor/buf/validate/validate.proto\"r\n" +
+	"\fTelegramUser\x12\x17\n" +
+	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02(\x01R\x02id\x12<\n" +
+	"\busername\x18\x02 \x01(\tB\x1b\xbaH\x18r\x162\x14^[a-zA-Z0-9_]{5,32}$H\x00R\busername\x88\x01\x01B\v\n" +
+	"\t_username\"\xba\x01\n" +
 	"\x04User\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x129\n" +
-	"\btelegram\x18\x02 \x01(\v2\x1d.jjtsksn.user.v1.TelegramUserR\btelegram\x129\n" +
 	"\n" +
-	"created_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"A\n" +
-	"\fTelegramUser\x121\n" +
-	"\x10telegram_user_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02(\x01R\x0etelegramUserId2\x8c\x02\n" +
-	"\vUserService\x12W\n" +
-	"\x12UpsertTelegramUser\x12*.jjtsksn.user.v1.UpsertTelegramUserRequest\x1a\x15.jjtsksn.user.v1.User\x12Y\n" +
-	"\x13GetUserByTelegramID\x12+.jjtsksn.user.v1.GetUserByTelegramIDRequest\x1a\x15.jjtsksn.user.v1.User\x12I\n" +
-	"\vGetUserByID\x12#.jjtsksn.user.v1.GetUserByIDRequest\x1a\x15.jjtsksn.user.v1.UserB0Z.github.com/jjtsksn/us-proto/go/user/v1;user_v1b\x06proto3"
+	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12G\n" +
+	"\rtelegram_user\x18\x03 \x01(\v2\x1d.jjtsksn.user.v1.TelegramUserH\x00R\ftelegramUser\x88\x01\x01B\x10\n" +
+	"\x0e_telegram_user\"i\n" +
+	"\x1bRegisterTelegramUserRequest\x12J\n" +
+	"\rtelegram_user\x18\x01 \x01(\v2\x1d.jjtsksn.user.v1.TelegramUserB\x06\xbaH\x03\xc8\x01\x01R\ftelegramUser\"Q\n" +
+	"\x1cRegisterTelegramUserResponse\x121\n" +
+	"\x04user\x18\x01 \x01(\v2\x15.jjtsksn.user.v1.UserB\x06\xbaH\x03\xc8\x01\x01R\x04user\"S\n" +
+	"\x1eGetUserByTelegramUserIDRequest\x121\n" +
+	"\x10telegram_user_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02(\x01R\x0etelegramUserId\"T\n" +
+	"\x1fGetUserByTelegramUserIDResponse\x121\n" +
+	"\x04user\x18\x01 \x01(\v2\x15.jjtsksn.user.v1.UserB\x06\xbaH\x03\xc8\x01\x01R\x04user2\x80\x02\n" +
+	"\vUserService\x12s\n" +
+	"\x14RegisterTelegramUser\x12,.jjtsksn.user.v1.RegisterTelegramUserRequest\x1a-.jjtsksn.user.v1.RegisterTelegramUserResponse\x12|\n" +
+	"\x17GetUserByTelegramUserID\x12/.jjtsksn.user.v1.GetUserByTelegramUserIDRequest\x1a0.jjtsksn.user.v1.GetUserByTelegramUserIDResponseB0Z.github.com/jjtsksn/us-proto/go/user/v1;user_v1b\x06proto3"
 
 var (
 	file_proto_user_proto_rawDescOnce sync.Once
@@ -295,30 +351,31 @@ func file_proto_user_proto_rawDescGZIP() []byte {
 	return file_proto_user_proto_rawDescData
 }
 
-var file_proto_user_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_proto_user_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_proto_user_proto_goTypes = []any{
-	(*UpsertTelegramUserRequest)(nil),  // 0: jjtsksn.user.v1.UpsertTelegramUserRequest
-	(*GetUserByTelegramIDRequest)(nil), // 1: jjtsksn.user.v1.GetUserByTelegramIDRequest
-	(*GetUserByIDRequest)(nil),         // 2: jjtsksn.user.v1.GetUserByIDRequest
-	(*User)(nil),                       // 3: jjtsksn.user.v1.User
-	(*TelegramUser)(nil),               // 4: jjtsksn.user.v1.TelegramUser
-	(*timestamppb.Timestamp)(nil),      // 5: google.protobuf.Timestamp
+	(*TelegramUser)(nil),                    // 0: jjtsksn.user.v1.TelegramUser
+	(*User)(nil),                            // 1: jjtsksn.user.v1.User
+	(*RegisterTelegramUserRequest)(nil),     // 2: jjtsksn.user.v1.RegisterTelegramUserRequest
+	(*RegisterTelegramUserResponse)(nil),    // 3: jjtsksn.user.v1.RegisterTelegramUserResponse
+	(*GetUserByTelegramUserIDRequest)(nil),  // 4: jjtsksn.user.v1.GetUserByTelegramUserIDRequest
+	(*GetUserByTelegramUserIDResponse)(nil), // 5: jjtsksn.user.v1.GetUserByTelegramUserIDResponse
+	(*timestamppb.Timestamp)(nil),           // 6: google.protobuf.Timestamp
 }
 var file_proto_user_proto_depIdxs = []int32{
-	4, // 0: jjtsksn.user.v1.UpsertTelegramUserRequest.telegram:type_name -> jjtsksn.user.v1.TelegramUser
-	4, // 1: jjtsksn.user.v1.User.telegram:type_name -> jjtsksn.user.v1.TelegramUser
-	5, // 2: jjtsksn.user.v1.User.created_at:type_name -> google.protobuf.Timestamp
-	0, // 3: jjtsksn.user.v1.UserService.UpsertTelegramUser:input_type -> jjtsksn.user.v1.UpsertTelegramUserRequest
-	1, // 4: jjtsksn.user.v1.UserService.GetUserByTelegramID:input_type -> jjtsksn.user.v1.GetUserByTelegramIDRequest
-	2, // 5: jjtsksn.user.v1.UserService.GetUserByID:input_type -> jjtsksn.user.v1.GetUserByIDRequest
-	3, // 6: jjtsksn.user.v1.UserService.UpsertTelegramUser:output_type -> jjtsksn.user.v1.User
-	3, // 7: jjtsksn.user.v1.UserService.GetUserByTelegramID:output_type -> jjtsksn.user.v1.User
-	3, // 8: jjtsksn.user.v1.UserService.GetUserByID:output_type -> jjtsksn.user.v1.User
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	6, // 0: jjtsksn.user.v1.User.created_at:type_name -> google.protobuf.Timestamp
+	0, // 1: jjtsksn.user.v1.User.telegram_user:type_name -> jjtsksn.user.v1.TelegramUser
+	0, // 2: jjtsksn.user.v1.RegisterTelegramUserRequest.telegram_user:type_name -> jjtsksn.user.v1.TelegramUser
+	1, // 3: jjtsksn.user.v1.RegisterTelegramUserResponse.user:type_name -> jjtsksn.user.v1.User
+	1, // 4: jjtsksn.user.v1.GetUserByTelegramUserIDResponse.user:type_name -> jjtsksn.user.v1.User
+	2, // 5: jjtsksn.user.v1.UserService.RegisterTelegramUser:input_type -> jjtsksn.user.v1.RegisterTelegramUserRequest
+	4, // 6: jjtsksn.user.v1.UserService.GetUserByTelegramUserID:input_type -> jjtsksn.user.v1.GetUserByTelegramUserIDRequest
+	3, // 7: jjtsksn.user.v1.UserService.RegisterTelegramUser:output_type -> jjtsksn.user.v1.RegisterTelegramUserResponse
+	5, // 8: jjtsksn.user.v1.UserService.GetUserByTelegramUserID:output_type -> jjtsksn.user.v1.GetUserByTelegramUserIDResponse
+	7, // [7:9] is the sub-list for method output_type
+	5, // [5:7] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_proto_init() }
@@ -326,13 +383,15 @@ func file_proto_user_proto_init() {
 	if File_proto_user_proto != nil {
 		return
 	}
+	file_proto_user_proto_msgTypes[0].OneofWrappers = []any{}
+	file_proto_user_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_user_proto_rawDesc), len(file_proto_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

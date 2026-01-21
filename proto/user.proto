@@ -8,34 +8,33 @@ import "google/protobuf/timestamp.proto";
 import "easyp_vendor/buf/validate/validate.proto";
 
 service UserService {
-  rpc UpsertTelegramUser(UpsertTelegramUserRequest)
-      returns (User);
-
-  rpc GetUserByTelegramID(GetUserByTelegramIDRequest)
-      returns (User);
-
-  rpc GetUserByID(GetUserByIDRequest)
-      returns (User);
+  rpc RegisterTelegramUser(RegisterTelegramUserRequest) returns (RegisterTelegramUserResponse);
+  rpc GetUserByTelegramUserID(GetUserByTelegramUserIDRequest) returns (GetUserByTelegramUserIDResponse);
 }
 
-message UpsertTelegramUserRequest {
-  TelegramUser telegram = 1 [(buf.validate.field).required = true];
-}
-
-message GetUserByTelegramIDRequest {
-  int64 telegram_user_id = 1 [(buf.validate.field).int64.gte = 1];
-}
-
-message GetUserByIDRequest {
-  string user_id = 1 [(buf.validate.field).string.uuid = true];
+message TelegramUser {
+  int64 id = 1 [(buf.validate.field).int64.gte = 1];
+  optional string username = 2 [(buf.validate.field).string.pattern = "^[a-zA-Z0-9_]{5,32}$"];
 }
 
 message User {
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  TelegramUser telegram = 2;
-  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp created_at = 2;
+  optional TelegramUser telegram_user = 3;
 }
 
-message TelegramUser {
+message RegisterTelegramUserRequest {
+  TelegramUser telegram_user = 1 [(buf.validate.field).required = true];
+}
+
+message RegisterTelegramUserResponse {
+  User user = 1 [(buf.validate.field).required = true];
+}
+
+message GetUserByTelegramUserIDRequest {
   int64 telegram_user_id = 1 [(buf.validate.field).int64.gte = 1];
+}
+
+message GetUserByTelegramUserIDResponse {
+  User user = 1 [(buf.validate.field).required = true];
 }
