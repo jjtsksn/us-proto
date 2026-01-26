@@ -7,34 +7,36 @@ option go_package = "github.com/jjtsksn/us-proto/go/user/v1;user_v1";
 import "google/protobuf/timestamp.proto";
 import "easyp_vendor/buf/validate/validate.proto";
 
+// User Service
 service UserService {
   rpc RegisterTelegramUser(RegisterTelegramUserRequest) returns (RegisterTelegramUserResponse);
   rpc GetUserByTelegramUserID(GetUserByTelegramUserIDRequest) returns (GetUserByTelegramUserIDResponse);
 }
-
+// MODELS
 message TelegramUser {
   int64 id = 1 [(buf.validate.field).int64.gte = 1];
   optional string username = 2 [(buf.validate.field).string.pattern = "^[a-zA-Z0-9_]{5,32}$"];
+  bool is_admin = 3 [(buf.validate.field).required = true];
 }
-
 message User {
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  google.protobuf.Timestamp created_at = 2;
-  optional TelegramUser telegram_user = 3;
+  google.protobuf.Timestamp created_at = 2 [(buf.validate.field).required = true];
+  bool is_active = 3 [(buf.validate.field).required = true];
+  optional TelegramUser telegram_user = 4;
 }
 
+// REGISTER_TELEGRAM_USER
 message RegisterTelegramUserRequest {
   TelegramUser telegram_user = 1 [(buf.validate.field).required = true];
 }
-
 message RegisterTelegramUserResponse {
   User user = 1 [(buf.validate.field).required = true];
 }
 
+//GET_USER_BY_TELEGRAM_ID
 message GetUserByTelegramUserIDRequest {
   int64 telegram_user_id = 1 [(buf.validate.field).int64.gte = 1];
 }
-
 message GetUserByTelegramUserIDResponse {
   User user = 1 [(buf.validate.field).required = true];
 }

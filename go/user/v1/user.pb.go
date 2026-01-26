@@ -24,10 +24,12 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// MODELS
 type TelegramUser struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Username      *string                `protobuf:"bytes,2,opt,name=username,proto3,oneof" json:"username,omitempty"`
+	IsAdmin       bool                   `protobuf:"varint,3,opt,name=is_admin,json=isAdmin,proto3" json:"is_admin,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -76,11 +78,19 @@ func (x *TelegramUser) GetUsername() string {
 	return ""
 }
 
+func (x *TelegramUser) GetIsAdmin() bool {
+	if x != nil {
+		return x.IsAdmin
+	}
+	return false
+}
+
 type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	TelegramUser  *TelegramUser          `protobuf:"bytes,3,opt,name=telegram_user,json=telegramUser,proto3,oneof" json:"telegram_user,omitempty"`
+	IsActive      bool                   `protobuf:"varint,3,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	TelegramUser  *TelegramUser          `protobuf:"bytes,4,opt,name=telegram_user,json=telegramUser,proto3,oneof" json:"telegram_user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -129,6 +139,13 @@ func (x *User) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *User) GetIsActive() bool {
+	if x != nil {
+		return x.IsActive
+	}
+	return false
+}
+
 func (x *User) GetTelegramUser() *TelegramUser {
 	if x != nil {
 		return x.TelegramUser
@@ -136,6 +153,7 @@ func (x *User) GetTelegramUser() *TelegramUser {
 	return nil
 }
 
+// REGISTER_TELEGRAM_USER
 type RegisterTelegramUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TelegramUser  *TelegramUser          `protobuf:"bytes,1,opt,name=telegram_user,json=telegramUser,proto3" json:"telegram_user,omitempty"`
@@ -224,6 +242,7 @@ func (x *RegisterTelegramUserResponse) GetUser() *User {
 	return nil
 }
 
+// GET_USER_BY_TELEGRAM_ID
 type GetUserByTelegramUserIDRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	TelegramUserId int64                  `protobuf:"varint,1,opt,name=telegram_user_id,json=telegramUserId,proto3" json:"telegram_user_id,omitempty"`
@@ -316,16 +335,18 @@ var File_proto_user_proto protoreflect.FileDescriptor
 
 const file_proto_user_proto_rawDesc = "" +
 	"\n" +
-	"\x10proto/user.proto\x12\x0fjjtsksn.user.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a(easyp_vendor/buf/validate/validate.proto\"r\n" +
+	"\x10proto/user.proto\x12\x0fjjtsksn.user.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a(easyp_vendor/buf/validate/validate.proto\"\x95\x01\n" +
 	"\fTelegramUser\x12\x17\n" +
 	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02(\x01R\x02id\x12<\n" +
-	"\busername\x18\x02 \x01(\tB\x1b\xbaH\x18r\x162\x14^[a-zA-Z0-9_]{5,32}$H\x00R\busername\x88\x01\x01B\v\n" +
-	"\t_username\"\xba\x01\n" +
+	"\busername\x18\x02 \x01(\tB\x1b\xbaH\x18r\x162\x14^[a-zA-Z0-9_]{5,32}$H\x00R\busername\x88\x01\x01\x12!\n" +
+	"\bis_admin\x18\x03 \x01(\bB\x06\xbaH\x03\xc8\x01\x01R\aisAdminB\v\n" +
+	"\t_username\"\xe7\x01\n" +
 	"\x04User\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x129\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12A\n" +
 	"\n" +
-	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12G\n" +
-	"\rtelegram_user\x18\x03 \x01(\v2\x1d.jjtsksn.user.v1.TelegramUserH\x00R\ftelegramUser\x88\x01\x01B\x10\n" +
+	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xbaH\x03\xc8\x01\x01R\tcreatedAt\x12#\n" +
+	"\tis_active\x18\x03 \x01(\bB\x06\xbaH\x03\xc8\x01\x01R\bisActive\x12G\n" +
+	"\rtelegram_user\x18\x04 \x01(\v2\x1d.jjtsksn.user.v1.TelegramUserH\x00R\ftelegramUser\x88\x01\x01B\x10\n" +
 	"\x0e_telegram_user\"i\n" +
 	"\x1bRegisterTelegramUserRequest\x12J\n" +
 	"\rtelegram_user\x18\x01 \x01(\v2\x1d.jjtsksn.user.v1.TelegramUserB\x06\xbaH\x03\xc8\x01\x01R\ftelegramUser\"Q\n" +
